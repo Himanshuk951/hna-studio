@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Unbounded, Inter_Tight, Space_Mono } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 const unbounded = Unbounded({
   subsets: ["latin"],
@@ -43,7 +44,10 @@ export default function RootLayout({
       lang="en"
       className={`${unbounded.variable} ${interTight.variable} ${spaceMono.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <Analytics />
+        {children}
+      </body>
     </html>
   );
 }
