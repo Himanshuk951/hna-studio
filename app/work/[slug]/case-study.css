@@ -1,0 +1,206 @@
+/* Generic case-study styling, scoped to .cs-page. Every project gets the
+   same structure/typography scale; the actual colors and fonts come from
+   that project's `theme` in projects.ts, applied as inline CSS custom
+   properties on the wrapping .cs-page element in page.tsx. Adding a new
+   project's case study is just adding a theme object — no new CSS file. */
+
+/* Defensive reset: the host app's globals.css has a bare `section` tag
+   rule (no class scoping) that would otherwise bleed into this page
+   since it also uses <section> tags. The more specific .cs-section /
+   .cs-built rules below still apply on top where intended. */
+.cs-page section {
+  padding: 0;
+  border-bottom: none;
+}
+
+.cs-page {
+  background: var(--cs-bg);
+  color: var(--cs-fg);
+  font-family: var(--cs-font-body, Georgia, "Times New Roman", serif);
+}
+
+.cs-page .wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.cs-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--cs-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--cs-muted);
+  padding: 28px 0;
+  transition: color 0.2s;
+}
+.cs-back:hover {
+  color: var(--cs-fg);
+}
+
+.cs-hero {
+  padding: 40px 0 60px;
+  border-bottom: 1px solid var(--cs-line);
+}
+.cs-kicker {
+  font-family: var(--cs-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cs-accent);
+  margin-bottom: 18px;
+}
+.cs-title {
+  font-family: var(--cs-font-display, inherit);
+  font-size: clamp(40px, 6vw, 76px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: var(--cs-title-transform, none);
+}
+.cs-subtitle {
+  margin-top: 14px;
+  font-size: 16px;
+  color: var(--cs-muted);
+  font-style: italic;
+}
+
+.cs-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  gap: 32px;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--cs-line);
+}
+.cs-meta-label {
+  font-family: var(--cs-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cs-muted);
+  margin-bottom: 8px;
+}
+.cs-meta-value {
+  font-size: 16px;
+}
+
+.cs-visual {
+  margin: 64px 0;
+  border: 1px solid var(--cs-line);
+  overflow: hidden;
+}
+
+/* Recolor the shared .live-preview component (defined in globals.css)
+   to match this project's theme instead of the neutral default. */
+.cs-page .live-preview {
+  background: var(--cs-bg);
+}
+.cs-page .live-preview-bar {
+  border-bottom: 1px solid var(--cs-line);
+}
+.cs-page .lp-dot {
+  background: var(--cs-line);
+}
+.cs-page .lp-dot:first-child {
+  background: var(--cs-accent);
+  opacity: 0.8;
+}
+.cs-page .lp-url {
+  font-family: var(--cs-font-mono);
+  color: var(--cs-muted);
+}
+
+.cs-section {
+  padding: 20px 0 56px;
+  max-width: 640px;
+}
+.cs-section h2 {
+  font-family: var(--cs-font-display, inherit);
+  font-size: clamp(24px, 3vw, 32px);
+  margin-bottom: 16px;
+}
+.cs-section p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--cs-muted);
+}
+
+.cs-built {
+  padding: 20px 0 56px;
+}
+.cs-built h2 {
+  font-family: var(--cs-font-display, inherit);
+  font-size: clamp(24px, 3vw, 32px);
+  margin-bottom: 24px;
+}
+.cs-built ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 40px;
+}
+.cs-built li {
+  font-size: 16px;
+  color: var(--cs-fg);
+  padding-left: 22px;
+  position: relative;
+}
+.cs-built li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cs-accent);
+}
+
+.cs-end {
+  padding: 70px 0 90px;
+  text-align: center;
+  border-top: 1px solid var(--cs-line);
+}
+.cs-end-actions {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+.cs-btn {
+  font-family: var(--cs-font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  padding: 15px 28px;
+  border: 1.5px solid var(--cs-fg);
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.cs-btn-solid {
+  background: var(--cs-fg);
+  color: var(--cs-bg);
+}
+.cs-btn-solid:hover {
+  background: var(--cs-accent);
+  border-color: var(--cs-accent);
+  color: var(--cs-bg);
+}
+.cs-btn-outline {
+  background: transparent;
+  color: var(--cs-fg);
+}
+.cs-btn-outline:hover {
+  background: var(--cs-fg);
+  color: var(--cs-bg);
+}
+
+@media (max-width: 720px) {
+  .cs-meta {
+    grid-template-columns: 1fr;
+  }
+  .cs-built ul {
+    grid-template-columns: 1fr;
+  }
+}

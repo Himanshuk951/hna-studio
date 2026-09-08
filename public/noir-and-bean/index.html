@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIR &amp; BEAN — Coffee worth slowing down for</title>
+<meta name="description" content="NOIR & BEAN is a specialty coffee café built around quality coffee, food, atmosphere and community. Concept project by HNA Studio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream: #F1EAD9;
+    --cream-2: #E9E0CB;
+    --espresso: #1B1310;
+    --espresso-soft: #2A1E18;
+    --coffee: #5A3D2E;
+    --coffee-dark: #3C2A20;
+    --brass: #A9793E;
+    --brass-light: #C79A5C;
+    --line: rgba(27,19,16,0.14);
+    --line-on-dark: rgba(241,234,217,0.16);
+    --ff-display: "Fraunces", Georgia, serif;
+    --ff-body: "Inter", -apple-system, sans-serif;
+    --ff-mono: "IBM Plex Mono", ui-monospace, monospace;
+    --container: 1240px;
+    --pad: clamp(24px, 5vw, 96px);
+    --section-pad: clamp(64px, 10vw, 160px);
+  }
+
+  *,*::before,*::after{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *,*::before,*::after{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+
+  body{
+    margin:0;
+    background: var(--cream);
+    color: var(--espresso);
+    font-family: var(--ff-body);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img{ max-width:100%; display:block; }
+  a{ color: inherit; }
+  button{ font-family: inherit; }
+
+  ::selection{ background: var(--brass); color: var(--cream); }
+
+  :focus-visible{
+    outline: 2px solid var(--brass);
+    outline-offset: 3px;
+  }
+
+  .container{ max-width: var(--container); margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); }
+  .section{ padding-top: var(--section-pad); padding-bottom: var(--section-pad); position:relative; }
+  .section-dark{ background: var(--espresso); color: var(--cream); }
+  .hairline-top{ border-top: 1px solid var(--line); }
+  .hairline-top.on-dark{ border-top: 1px solid var(--line-on-dark); }
+
+  .eyebrow{
+    font-family: var(--ff-mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--brass);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin: 0 0 20px;
+  }
+  .eyebrow::before{ content:""; width:26px; height:1px; background: var(--brass); display:inline-block; }
+
+  h1,h2,h3,h4{ font-family: var(--ff-display); font-weight: 500; margin:0; line-height:1.05; letter-spacing: -0.01em; }
+  p{ margin:0; }
+
+  .btn{
+    font-family: var(--ff-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding: 16px 30px;
+    border-radius: 2px;
+    border: 1px solid currentColor;
+    cursor:pointer;
+    background: transparent;
+    transition: background-color .35s ease, color .35s ease, border-color .35s ease, transform .25s ease;
+    white-space: nowrap;
+  }
+  .btn-primary{
+    background: var(--espresso);
+    color: var(--cream);
+    border-color: var(--espresso);
+  }
+  .btn-primary:hover{ background: var(--brass); border-color: var(--brass); transform: translateY(-2px); }
+  .btn-ghost{ color: var(--espresso); border-color: var(--espresso); }
+  .btn-ghost:hover{ background: var(--espresso); color: var(--cream); transform: translateY(-2px); }
+  .btn-ghost.on-dark{ color: var(--cream); border-color: var(--line-on-dark); }
+  .btn-ghost.on-dark:hover{ background: var(--cream); color: var(--espresso); border-color: var(--cream); }
+  .btn-outline-brass{ color: var(--brass-light); border-color: var(--brass-light); }
+  .btn-outline-brass:hover{ background: var(--brass-light); color: var(--espresso); }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position: fixed; top:0; left:0; right:0; z-index: 200;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 26px var(--pad);
+    color: var(--cream);
+    transition: background-color .4s ease, padding .4s ease, border-color .4s ease, backdrop-filter .4s ease;
+    border-bottom: 1px solid transparent;
+  }
+  header.nav.scrolled{
+    background: rgba(27,19,16,0.92);
+    backdrop-filter: blur(10px);
+    padding-top: 16px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--line-on-dark);
+  }
+  .nav-logo{
+    font-family: var(--ff-display);
+    font-size: 21px;
+    letter-spacing: 0.04em;
+    text-decoration:none;
+    color: inherit;
+    font-weight: 500;
+  }
+  .nav-logo .amp{ font-style: italic; color: var(--brass-light); }
+  nav.nav-links{ display:flex; align-items:center; gap:40px; }
+  nav.nav-links a{
+    font-family: var(--ff-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    padding-bottom: 4px;
+  }
+  nav.nav-links a::after{
+    content:""; position:absolute; left:0; bottom:0; width:0; height:1px; background: var(--brass-light);
+    transition: width .3s ease;
+  }
+  nav.nav-links a:hover::after{ width:100%; }
+  .nav-right{ display:flex; align-items:center; gap:28px; }
+  .hamburger{
+    display:none; background:none; border:none; color: var(--cream); width:34px; height:22px;
+    position:relative; cursor:pointer; padding:0; z-index:210;
+  }
+  .hamburger span{
+    position:absolute; left:0; right:0; height:1px; background: currentColor; transition: transform .3s ease, opacity .3s ease;
+  }
+  .hamburger span:nth-child(1){ top:0; }
+  .hamburger span:nth-child(2){ top:50%; transform: translateY(-50%); }
+  .hamburger span:nth-child(3){ bottom:0; }
+  .hamburger.open span:nth-child(1){ top:50%; transform: translateY(-50%) rotate(45deg); }
+  .hamburger.open span:nth-child(2){ opacity:0; }
+  .hamburger.open span:nth-child(3){ bottom:50%; transform: translateY(50%) rotate(-45deg); }
+
+  .mobile-menu{
+    position: fixed; inset:0; background: var(--espresso); color: var(--cream); z-index:190;
+    display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:26px;
+    padding: 40px var(--pad);
+    transform: translateY(-100%); transition: transform .5s cubic-bezier(.7,0,.2,1);
+  }
+  .mobile-menu.open{ transform: translateY(0); }
+  .mobile-menu a{
+    font-family: var(--ff-display); font-size: 34px; text-decoration:none; color:inherit; font-weight:400;
+  }
+  .mobile-menu .mm-cta{ margin-top:14px; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; min-height: 100svh; display:flex; align-items:flex-end;
+    background: var(--espresso); color: var(--cream); overflow:hidden;
+  }
+  .hero-media{ position:absolute; inset:0; }
+  .hero-media img{
+    width:100%; height:100%; object-fit:cover; object-position:center 60%;
+    transform: scale(1.12); animation: heroZoom 12s ease-out forwards;
+  }
+  @keyframes heroZoom{ to{ transform: scale(1); } }
+  .hero-media::after{
+    content:""; position:absolute; inset:0;
+    background: linear-gradient(180deg, rgba(20,14,11,0.35) 0%, rgba(20,14,11,0.35) 40%, rgba(20,14,11,0.92) 100%);
+  }
+  .hero-inner{
+    position:relative; z-index:2; width:100%;
+    padding: 0 var(--pad) clamp(56px,8vw,96px);
+  }
+  .hero-eyebrow{
+    font-family: var(--ff-mono); font-size:12.5px; letter-spacing:0.18em; text-transform:uppercase;
+    color: var(--brass-light); margin-bottom:22px;
+    opacity:0; transform: translateY(16px);
+    animation: fadeUp .9s ease .3s forwards;
+  }
+  .hero h1{
+    font-size: clamp(42px, 7.5vw, 104px);
+    max-width: 16ch;
+    color: var(--cream);
+  }
+  .hero h1 span{ display:block; }
+  .hero h1 .line1{ opacity:0; transform: translateY(28px); animation: fadeUp 1s ease .45s forwards; }
+  .hero h1 .line2{ opacity:0; transform: translateY(28px); animation: fadeUp 1s ease .62s forwards; font-style: italic; color: var(--brass-light); }
+  .hero-sub{
+    max-width: 46ch; margin-top: 28px; font-size: clamp(15px,1.4vw,18px); color: rgba(241,234,217,0.82);
+    opacity:0; transform: translateY(18px); animation: fadeUp 1s ease .8s forwards;
+  }
+  .hero-actions{
+    display:flex; gap:16px; flex-wrap:wrap; margin-top: 40px;
+    opacity:0; transform: translateY(18px); animation: fadeUp 1s ease .95s forwards;
+  }
+  @keyframes fadeUp{ to{ opacity:1; transform: translateY(0); } }
+
+  .hero-scroll{
+    position:absolute; right: var(--pad); bottom: 40px; z-index:2;
+    display:flex; align-items:center; gap:10px; color: rgba(241,234,217,0.7);
+    font-family: var(--ff-mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+  }
+  .hero-scroll .dash{ width:1px; height:34px; background: rgba(241,234,217,0.5); position:relative; overflow:hidden; }
+  .hero-scroll .dash::after{
+    content:""; position:absolute; left:0; top:-100%; width:100%; height:100%; background: var(--brass-light);
+    animation: scrollLine 2.2s ease-in-out infinite;
+  }
+  @keyframes scrollLine{ 0%{ top:-100%; } 60%{ top:100%; } 100%{ top:100%; } }
+
+  /* ---------- reveal ---------- */
+  [data-reveal]{ opacity:0; transform: translateY(32px); transition: opacity .9s cubic-bezier(.2,.6,.2,1), transform .9s cubic-bezier(.2,.6,.2,1); }
+  [data-reveal].is-visible{ opacity:1; transform: translateY(0); }
+  [data-reveal="fade"]{ transform: none; }
+  [data-reveal-stagger] > *{ transition-delay: calc(var(--i,0) * 110ms); }
+
+  /* ---------- FEATURED / ABOUT ---------- */
+  .about-grid{
+    display:grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(40px,6vw,90px); align-items:center;
+  }
+  .about-media{ position:relative; }
+  .about-media img{ width:100%; height: clamp(360px,42vw,560px); object-fit:cover; }
+  .about-media .frame-tag{
+    position:absolute; bottom:-1px; right:-1px; background: var(--espresso); color: var(--cream);
+    font-family: var(--ff-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    padding:10px 16px;
+  }
+  .about-copy h2{ font-size: clamp(34px,4.2vw,58px); max-width: 11ch; }
+  .about-copy h2 em{ font-style: italic; color: var(--brass); }
+  .about-copy p{ margin-top:26px; font-size:17px; line-height:1.75; color: var(--coffee-dark); max-width: 46ch; }
+  .about-list{ margin-top: 36px; display:flex; flex-direction:column; gap:0; border-top: 1px solid var(--line); }
+  .about-list div{ display:flex; justify-content:space-between; padding: 16px 0; border-bottom: 1px solid var(--line); font-family: var(--ff-mono); font-size:13px; letter-spacing:.03em; }
+  .about-list span:first-child{ text-transform:uppercase; color: var(--coffee); }
+
+  /* ---------- MENU ---------- */
+  .menu-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:30px; flex-wrap:wrap; margin-bottom: 56px; }
+  .menu-head h2{ font-size: clamp(34px,4.5vw,60px); }
+  .menu-filters{ display:flex; gap:10px; flex-wrap:wrap; }
+  .filter-btn{
+    font-family: var(--ff-mono); font-size:12px; letter-spacing:0.06em; text-transform:uppercase;
+    padding: 10px 18px; border:1px solid var(--line); background:transparent; color: var(--coffee-dark);
+    cursor:pointer; border-radius: 2px; transition: all .3s ease;
+  }
+  .filter-btn:hover{ border-color: var(--espresso); }
+  .filter-btn.active{ background: var(--espresso); color: var(--cream); border-color: var(--espresso); }
+
+  .menu-category{ margin-bottom: 64px; }
+  .menu-category:last-child{ margin-bottom:0; }
+  .menu-category-title{
+    font-family: var(--ff-mono); font-size:13px; letter-spacing:0.14em; text-transform:uppercase;
+    color: var(--brass); margin-bottom: 6px; display:flex; align-items:center; gap:10px;
+  }
+  .menu-category-title .num{ color: var(--coffee); opacity:.6; }
+  .ticket{
+    border-top: 1px dashed var(--line);
+  }
+  .ticket-row{
+    display:flex; align-items:baseline; gap:14px; padding: 20px 0; border-bottom: 1px dashed var(--line);
+    transition: padding-left .35s ease, background-color .35s ease;
+  }
+  .ticket-row:hover{ padding-left: 10px; background: rgba(90,61,46,0.05); }
+  .ticket-row .item-name{ font-family: var(--ff-display); font-size: clamp(19px,2vw,23px); white-space:nowrap; }
+  .ticket-row .item-desc{ font-size:13.5px; color: var(--coffee); margin-top:3px; font-family: var(--ff-body); }
+  .ticket-leader{ flex:1; border-bottom: 1px dotted var(--coffee); position:relative; top:-6px; opacity:.5; min-width: 24px; }
+  .ticket-row .item-price{ font-family: var(--ff-mono); font-size:16px; color: var(--espresso); white-space:nowrap; }
+
+  /* ---------- SIGNATURE ---------- */
+  .signature{ position:relative; color: var(--cream); background: var(--espresso); overflow:hidden; }
+  .signature-media{ position:absolute; inset:0; }
+  .signature-media img{ width:100%; height:100%; object-fit:cover; opacity:0.55; }
+  .signature-media::after{ content:""; position:absolute; inset:0; background: linear-gradient(90deg, rgba(27,19,16,0.96) 15%, rgba(27,19,16,0.55) 60%, rgba(27,19,16,0.85) 100%); }
+  .signature-inner{ position:relative; z-index:2; max-width: 640px; }
+  .signature h2{ font-size: clamp(40px,6vw,84px); margin-top:18px; }
+  .signature h2 em{ color: var(--brass-light); font-style:italic; }
+  .signature-price{ font-family: var(--ff-mono); font-size: 20px; color: var(--brass-light); margin-top: 22px; }
+  .signature p.desc{ margin-top:18px; font-size:17px; line-height:1.7; color: rgba(241,234,217,0.82); max-width: 44ch; }
+  .signature-actions{ margin-top:36px; }
+
+  /* ---------- GALLERY ---------- */
+  .gallery-grid{
+    display:grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 130px; gap: 14px;
+  }
+  .gallery-item{ position:relative; overflow:hidden; }
+  .gallery-item img{ width:100%; height:100%; object-fit:cover; transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .5s ease; }
+  .gallery-item:hover img{ transform: scale(1.08); }
+  .gallery-item .g-cap{
+    position:absolute; left:0; right:0; bottom:0; padding: 16px;
+    background: linear-gradient(0deg, rgba(20,14,11,0.75), transparent);
+    color: var(--cream); font-family: var(--ff-mono); font-size:11.5px; letter-spacing:0.06em; text-transform:uppercase;
+    opacity:0; transform: translateY(8px); transition: opacity .4s ease, transform .4s ease;
+  }
+  .gallery-item:hover .g-cap{ opacity:1; transform: translateY(0); }
+  .g-1{ grid-column: span 3; grid-row: span 3; }
+  .g-2{ grid-column: span 3; grid-row: span 2; }
+  .g-3{ grid-column: span 2; grid-row: span 2; }
+  .g-4{ grid-column: span 2; grid-row: span 3; }
+  .g-5{ grid-column: span 2; grid-row: span 2; }
+  .g-6{ grid-column: span 3; grid-row: span 2; }
+
+  /* ---------- WHY VISIT ---------- */
+  .why-grid{ display:grid; grid-template-columns: repeat(4,1fr); border-top:1px solid var(--line); border-left:1px solid var(--line); }
+  .why-item{ padding: 44px 34px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .why-item .why-num{ font-family: var(--ff-mono); font-size:12px; color: var(--brass); }
+  .why-item h3{ font-size: 23px; margin-top:22px; }
+  .why-item p{ margin-top:14px; font-size:15px; color: var(--coffee-dark); line-height:1.65; }
+
+  /* ---------- VISIT / LOCATION ---------- */
+  .visit-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: clamp(40px,6vw,90px); align-items:stretch; }
+  .visit-copy h2{ font-size: clamp(34px,4.4vw,58px); }
+  .visit-block{ margin-top: 34px; }
+  .visit-block .vb-label{ font-family: var(--ff-mono); font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color: var(--brass); margin-bottom:10px; }
+  .visit-block .vb-text{ font-size:16.5px; line-height:1.7; color: var(--coffee-dark); }
+  .visit-actions{ display:flex; gap:14px; margin-top: 34px; flex-wrap:wrap; }
+  .map-visual{
+    position:relative; min-height: 340px; background: var(--coffee-dark);
+    background-image:
+      linear-gradient(rgba(241,234,217,0.09) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(241,234,217,0.09) 1px, transparent 1px);
+    background-size: 34px 34px;
+    overflow:hidden;
+  }
+  .map-visual::before{
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(circle at 55% 45%, rgba(169,121,62,0.35), transparent 55%);
+  }
+  .map-pin{
+    position:absolute; top:44%; left:52%; transform: translate(-50%,-100%);
+    display:flex; flex-direction:column; align-items:center;
+  }
+  .map-pin .dot{
+    width:16px; height:16px; border-radius:50%; background: var(--brass-light); border: 3px solid var(--cream);
+    box-shadow: 0 0 0 6px rgba(199,154,92,0.25);
+    animation: pulsePin 2.6s ease-in-out infinite;
+  }
+  @keyframes pulsePin{ 0%,100%{ box-shadow: 0 0 0 6px rgba(199,154,92,0.25);} 50%{ box-shadow: 0 0 0 12px rgba(199,154,92,0.08);} }
+  .map-pin .stem{ width:1px; height:26px; background: var(--brass-light); }
+  .map-label{
+    position:absolute; bottom:22px; left:22px; right:22px;
+    font-family: var(--ff-mono); font-size:12px; color: var(--cream); letter-spacing:0.05em;
+    display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+  }
+
+  /* ---------- RESERVATION ---------- */
+  .reserve{ background: var(--espresso); color: var(--cream); }
+  .reserve-grid{ display:grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(40px,6vw,90px); }
+  .reserve-copy h2{ font-size: clamp(36px,5vw,66px); max-width: 10ch; }
+  .reserve-copy p{ margin-top:22px; color: rgba(241,234,217,0.75); font-size:16.5px; max-width: 40ch; line-height:1.7; }
+  form.reserve-form{ display:grid; grid-template-columns: 1fr 1fr; gap: 22px 24px; }
+  .field{ display:flex; flex-direction:column; gap:10px; }
+  .field.full{ grid-column: 1 / -1; }
+  .field label{ font-family: var(--ff-mono); font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase; color: var(--brass-light); }
+  .field input{
+    background: transparent; border:none; border-bottom: 1px solid var(--line-on-dark);
+    color: var(--cream); font-family: var(--ff-body); font-size:16px; padding: 10px 2px;
+    transition: border-color .3s ease;
+  }
+  .field input::placeholder{ color: rgba(241,234,217,0.35); }
+  .field input:focus{ outline:none; border-color: var(--brass-light); }
+  .reserve-submit{ margin-top: 8px; }
+  .reserve-note{ font-family: var(--ff-mono); font-size:11.5px; color: rgba(241,234,217,0.45); margin-top:18px; }
+
+  .reserve-success{
+    display:none; flex-direction:column; align-items:flex-start; gap:18px; padding: 50px 10px;
+  }
+  .reserve-success.show{ display:flex; }
+  .reserve-success .check{
+    width:52px; height:52px; border-radius:50%; border:1px solid var(--brass-light);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .reserve-success h3{ font-size: 28px; color: var(--cream); }
+  .reserve-success p{ color: rgba(241,234,217,0.75); font-size:15.5px; max-width:40ch; line-height:1.6; }
+  .reserve-success .rs-detail{ font-family: var(--ff-mono); font-size:13px; color: var(--brass-light); }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background: var(--espresso); color: rgba(241,234,217,0.85); padding-top: 70px; }
+  .footer-top{ display:flex; justify-content:space-between; gap:40px; flex-wrap:wrap; padding-bottom: 50px; }
+  .footer-brand .nav-logo{ font-size:26px; }
+  .footer-tag{ font-family: var(--ff-mono); font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase; color: var(--brass-light); margin-top:14px; }
+  .footer-links{ display:flex; gap: 60px; flex-wrap:wrap; }
+  .footer-col h4{ font-family: var(--ff-mono); font-size:11.5px; letter-spacing:0.1em; text-transform:uppercase; color: var(--coffee); margin-bottom:16px; font-weight:400; color:rgba(241,234,217,0.4); }
+  .footer-col a{ display:block; text-decoration:none; color: inherit; font-size:14.5px; margin-bottom:10px; transition: color .25s ease; }
+  .footer-col a:hover{ color: var(--brass-light); }
+  .footer-bottom{
+    border-top: 1px solid var(--line-on-dark); padding: 26px 0 34px; display:flex; justify-content:space-between;
+    gap:16px; flex-wrap:wrap; font-family: var(--ff-mono); font-size:12px; color: rgba(241,234,217,0.45);
+  }
+  .footer-bottom .studio-credit{ color: rgba(241,234,217,0.65); }
+  .footer-bottom .studio-credit strong{ color: var(--brass-light); font-weight:500; }
+
+  .concept-badge{
+    position: fixed; left: 18px; bottom: 18px; z-index: 150;
+    font-family: var(--ff-mono); font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase;
+    background: var(--espresso); color: var(--cream); border:1px solid var(--line-on-dark);
+    padding: 9px 13px; border-radius: 2px; opacity:0.88;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1024px){
+    .about-grid, .visit-grid, .reserve-grid{ grid-template-columns: 1fr; }
+    .about-media img{ height: 360px; }
+    .why-grid{ grid-template-columns: repeat(2,1fr); }
+    form.reserve-form{ grid-template-columns: 1fr 1fr; }
+    .gallery-grid{ grid-template-columns: repeat(4,1fr); grid-auto-rows: 120px; }
+    .g-1{ grid-column: span 2; grid-row: span 2; }
+    .g-2{ grid-column: span 2; grid-row: span 2; }
+    .g-3{ grid-column: span 2; grid-row: span 2; }
+    .g-4{ grid-column: span 2; grid-row: span 2; }
+    .g-5{ grid-column: span 2; grid-row: span 2; }
+    .g-6{ grid-column: span 2; grid-row: span 2; }
+  }
+
+  @media (max-width: 860px){
+    nav.nav-links{ display:none; }
+    .nav-right .btn-ghost.desktop-only{ display:none; }
+    .hamburger{ display:block; }
+    .why-grid{ grid-template-columns: 1fr; }
+    .why-item{ border-right:none; }
+    .signature-inner{ max-width:100%; }
+  }
+
+  @media (max-width: 640px){
+    .container{ padding-left:22px; padding-right:22px; }
+    .hero{ min-height: 100svh; }
+    .hero h1{ font-size: clamp(38px, 10vw, 56px); }
+    .about-list div, .ticket-row{ flex-wrap:wrap; }
+    form.reserve-form{ grid-template-columns: 1fr; }
+    .gallery-grid{ grid-template-columns: repeat(2,1fr); grid-auto-rows: 150px; }
+    .g-1,.g-2,.g-3,.g-4,.g-5,.g-6{ grid-column: span 2; grid-row: span 2; }
+    .menu-head{ align-items:flex-start; flex-direction:column; }
+    .footer-top{ flex-direction:column; gap:34px; }
+    .footer-links{ gap:40px; }
+    .concept-badge{ left:12px; bottom:12px; font-size:9.5px; padding:7px 10px; }
+    .map-visual{ min-height:260px; }
+  }
+
+  .img-fallback{ background: linear-gradient(135deg, var(--coffee-dark), var(--coffee)); }
+
+  .sr-only{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
+    clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="sr-only">Skip to content</a>
+
+<!-- NAVIGATION -->
+<header class="nav" id="siteNav">
+  <a href="#" class="nav-logo">NOIR <span class="amp">&amp;</span> BEAN</a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="#menu">Menu</a>
+    <a href="#story">Our Story</a>
+    <a href="#experience">Experience</a>
+    <a href="#visit">Visit</a>
+    <a href="#reserve">Contact</a>
+  </nav>
+  <div class="nav-right">
+    <a href="#reserve" class="btn btn-ghost on-dark desktop-only">Order / Reserve</a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#menu">Menu</a>
+  <a href="#story">Our Story</a>
+  <a href="#experience">Experience</a>
+  <a href="#visit">Visit</a>
+  <a href="#reserve">Contact</a>
+  <a href="#reserve" class="btn btn-outline-brass mm-cta">Order / Reserve</a>
+</div>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-media">
+      <img id="heroImg" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1800&q=80" alt="Barista pouring latte art into a cup at NOIR & BEAN">
+    </div>
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Specialty coffee &middot; Hyderabad</p>
+      <h1>
+        <span class="line1">Coffee worth</span>
+        <span class="line2">slowing down for.</span>
+      </h1>
+      <p class="hero-sub">Specialty coffee, thoughtful food, and a space designed for good conversations.</p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-primary">Explore the Menu</a>
+        <a href="#visit" class="btn btn-ghost on-dark">Visit Us</a>
+      </div>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">
+      <span>Scroll</span>
+      <span class="dash"></span>
+    </div>
+  </section>
+
+  <!-- FEATURED EXPERIENCE / STORY -->
+  <section class="section" id="story">
+    <div class="container about-grid">
+      <div class="about-media" data-reveal>
+        <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1200&q=80" alt="Warm interior seating area of NOIR & BEAN café" onerror="this.classList.add('img-fallback'); this.removeAttribute('src');">
+        <span class="frame-tag">Our Space</span>
+      </div>
+      <div class="about-copy" data-reveal style="transition-delay:.12s">
+        <p class="eyebrow">Our Story</p>
+        <h2>More than <em>coffee.</em></h2>
+        <p>NOIR &amp; BEAN was built around one idea: a café should slow you down, not speed you up. Every detail, from the beans we roast to the music we play, is chosen to hold a moment a little longer &mdash; quality coffee, honest food, and a room that feels good to sit in.</p>
+        <p>It's a place for early meetings, long afternoons, and evenings that run past closing. Coffee, food, music and conversation, gathered under one warm light.</p>
+        <div class="about-list">
+          <div><span>Coffee</span><span>Small-batch, seasonal roasts</span></div>
+          <div><span>Food</span><span>Cooked fresh, daily</span></div>
+          <div><span>Atmosphere</span><span>Warm light, low noise</span></div>
+          <div><span>Community</span><span>Events &amp; workshops</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="section hairline-top" id="menu">
+    <div class="container">
+      <div class="menu-head" data-reveal>
+        <div>
+          <p class="eyebrow">On The Menu</p>
+          <h2>Today's selection.</h2>
+        </div>
+        <div class="menu-filters" id="menuFilters" role="group" aria-label="Filter menu by category">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="coffee">Coffee</button>
+          <button class="filter-btn" data-filter="food">Food</button>
+          <button class="filter-btn" data-filter="dessert">Dessert</button>
+        </div>
+      </div>
+
+      <div class="menu-category" data-category="coffee" data-reveal>
+        <p class="menu-category-title"><span class="num">01</span> Coffee</p>
+        <div class="ticket">
+          <div class="ticket-row"><span class="item-name">Espresso</span><span class="ticket-leader"></span><span class="item-price">&#8377;160</span></div>
+          <div class="ticket-row"><span class="item-name">Cappuccino</span><span class="ticket-leader"></span><span class="item-price">&#8377;220</span></div>
+          <div class="ticket-row"><span class="item-name">Flat White</span><span class="ticket-leader"></span><span class="item-price">&#8377;240</span></div>
+          <div class="ticket-row"><span class="item-name">Spanish Latte</span><span class="ticket-leader"></span><span class="item-price">&#8377;260</span></div>
+          <div class="ticket-row"><span class="item-name">Cold Brew</span><span class="ticket-leader"></span><span class="item-price">&#8377;250</span></div>
+        </div>
+      </div>
+
+      <div class="menu-category" data-category="food" data-reveal>
+        <p class="menu-category-title"><span class="num">02</span> Food</p>
+        <div class="ticket">
+          <div class="ticket-row"><span class="item-name">Avocado Toast</span><span class="ticket-leader"></span><span class="item-price">&#8377;320</span></div>
+          <div class="ticket-row"><span class="item-name">Truffle Mushroom Toast</span><span class="ticket-leader"></span><span class="item-price">&#8377;380</span></div>
+          <div class="ticket-row"><span class="item-name">Grilled Chicken Sandwich</span><span class="ticket-leader"></span><span class="item-price">&#8377;420</span></div>
+          <div class="ticket-row"><span class="item-name">Classic Croissant</span><span class="ticket-leader"></span><span class="item-price">&#8377;180</span></div>
+        </div>
+      </div>
+
+      <div class="menu-category" data-category="dessert" data-reveal>
+        <p class="menu-category-title"><span class="num">03</span> Dessert</p>
+        <div class="ticket">
+          <div class="ticket-row"><span class="item-name">Basque Cheesecake</span><span class="ticket-leader"></span><span class="item-price">&#8377;320</span></div>
+          <div class="ticket-row"><span class="item-name">Chocolate Tart</span><span class="ticket-leader"></span><span class="item-price">&#8377;280</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNATURE ITEM -->
+  <section class="section signature">
+    <div class="hero-media signature-media">
+      <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=1800&q=80" alt="NOIR Signature Latte with layered milk and espresso" onerror="this.parentElement.classList.add('img-fallback'); this.remove();">
+    </div>
+    <div class="container">
+      <div class="signature-inner" data-reveal>
+        <p class="eyebrow">Signature</p>
+        <h2>NOIR <em>Signature</em> Latte</h2>
+        <p class="signature-price">&#8377;280</p>
+        <p class="desc">Double espresso, silky milk and our signature house blend &mdash; built slow, poured smooth, finished with a whisper of cocoa.</p>
+        <div class="signature-actions">
+          <a href="#menu" class="btn btn-outline-brass">View Full Menu</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section hairline-top" id="experience">
+    <div class="container">
+      <div data-reveal style="margin-bottom:50px;">
+        <p class="eyebrow">Experience</p>
+        <h2 style="font-size:clamp(34px,4.5vw,60px);">Inside NOIR &amp; BEAN.</h2>
+      </div>
+      <div class="gallery-grid" data-reveal>
+        <div class="gallery-item g-1">
+          <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=900&q=80" alt="Guests sitting and talking inside the café" loading="lazy" onerror="this.parentElement.classList.add('img-fallback'); this.remove();">
+          <span class="g-cap">People &amp; Conversation</span>
+        </div>
+        <div class="gallery-item g-2">
+          <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=800&q=80" alt="Freshly roasted coffee beans" loading="lazy" onerror="this.parentElement.classList.add('img-fallback'); this.remove();">
+          <span class="g-cap">Coffee</span>
+        </div>
+        <div class="gallery-item g-3">
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" alt="Café interior with warm lighting" loading="lazy" onerror="this.parentElement.classList.add('img-fallback'); this.remove();">
+          <span class="g-cap">Interior</span>
+        </div>
+        <div class="gallery-item g-4">
+          <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=800&q=80" alt="Fresh pastries and toast on a plate" loading="lazy" onerror="this.parentElement.classList.add('img-fallback'); this.remove();">
+          <span class="g-cap">Food</span>
+        </div>
+        <div class="gallery-item g-5">
+          <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80" alt="Barista preparing a drink behind the counter" loading="lazy" onerror="this.parentElement.classList.add('img-fallback'); this.remove();">
+          <span class="g-cap">Barista</span>
+        </div>
+        <div class="gallery-item g-6">
+          <img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?auto=format&fit=crop&w=900&q=80" alt="Evening atmosphere at the café with warm lights" loading="lazy" onerror="this.parentElement.classList.add('img-fallback'); this.remove();">
+          <span class="g-cap">Evening Atmosphere</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY VISIT -->
+  <section class="section hairline-top" style="padding-bottom:0;">
+    <div class="container" style="padding-bottom: var(--section-pad);">
+      <div data-reveal style="margin-bottom:50px;">
+        <p class="eyebrow">Why Visit</p>
+        <h2 style="font-size:clamp(34px,4.5vw,60px);">Built to be lingered in.</h2>
+      </div>
+    </div>
+    <div class="why-grid" data-reveal>
+      <div class="why-item"><p class="why-num">01</p><h3>Specialty Coffee</h3><p>Carefully sourced beans and precise brewing, cup after cup.</p></div>
+      <div class="why-item"><p class="why-num">02</p><h3>Fresh Kitchen</h3><p>Simple food made with quality ingredients, prepared daily.</p></div>
+      <div class="why-item"><p class="why-num">03</p><h3>Good Atmosphere</h3><p>A space designed for work, conversations and slow mornings.</p></div>
+      <div class="why-item"><p class="why-num">04</p><h3>Community</h3><p>Events, workshops and coffee culture, open to everyone.</p></div>
+    </div>
+  </section>
+
+  <!-- VISIT / LOCATION -->
+  <section class="section hairline-top" id="visit">
+    <div class="container visit-grid">
+      <div class="visit-copy" data-reveal>
+        <p class="eyebrow">Visit</p>
+        <h2>Come find us.</h2>
+        <div class="visit-block">
+          <p class="vb-label">Address</p>
+          <p class="vb-text">NOIR &amp; BEAN<br>12 Example Street<br>Hyderabad, Telangana</p>
+        </div>
+        <div class="visit-block">
+          <p class="vb-label">Hours</p>
+          <p class="vb-text">Mon&ndash;Fri: 8:00 AM &ndash; 10:00 PM<br>Sat&ndash;Sun: 8:00 AM &ndash; 11:00 PM</p>
+        </div>
+        <div class="visit-actions">
+          <a href="https://maps.google.com/?q=12+Example+Street+Hyderabad+Telangana" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get Directions</a>
+          <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">WhatsApp Us</a>
+        </div>
+      </div>
+      <div class="map-visual" data-reveal aria-hidden="true">
+        <div class="map-pin"><div class="dot"></div><div class="stem"></div></div>
+        <div class="map-label">
+          <span>12 Example Street, Hyderabad</span>
+          <span>17.385&deg; N, 78.486&deg; E</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESERVATION -->
+  <section class="section reserve" id="reserve">
+    <div class="container reserve-grid">
+      <div class="reserve-copy" data-reveal>
+        <p class="eyebrow">Reserve a Table</p>
+        <h2>Your table is waiting.</h2>
+        <p>Tell us when you're coming and we'll have a table ready. This is a concept demo &mdash; no booking is actually made.</p>
+      </div>
+
+      <div data-reveal style="transition-delay:.1s">
+        <form class="reserve-form" id="reserveForm" novalidate>
+          <div class="field">
+            <label for="r-name">Name</label>
+            <input type="text" id="r-name" name="name" placeholder="Your full name" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="r-phone">Phone</label>
+            <input type="tel" id="r-phone" name="phone" placeholder="+91 00000 00000" required autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="r-date">Date</label>
+            <input type="date" id="r-date" name="date" required>
+          </div>
+          <div class="field">
+            <label for="r-time">Time</label>
+            <input type="time" id="r-time" name="time" required>
+          </div>
+          <div class="field full">
+            <label for="r-guests">Number of Guests</label>
+            <input type="number" id="r-guests" name="guests" min="1" max="20" placeholder="2" required>
+          </div>
+          <div class="field full reserve-submit">
+            <button type="submit" class="btn btn-outline-brass" style="width:fit-content;">Request a Reservation</button>
+          </div>
+          <p class="reserve-note field full">Demo form &mdash; not connected to a live booking system.</p>
+        </form>
+
+        <div class="reserve-success" id="reserveSuccess" role="status" aria-live="polite">
+          <div class="check" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 12.5L9.5 18L20 6" stroke="#C79A5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Table requested.</h3>
+          <p>Thank you, <span id="successName">friend</span>. We've noted your request for <span id="successDetail" class="rs-detail"></span>. We'll confirm shortly by phone.</p>
+          <button type="button" class="btn btn-ghost on-dark" id="reserveAgainBtn">Make Another Request</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">NOIR <span class="amp">&amp;</span> BEAN</a>
+        <p class="footer-tag">Coffee &middot; Food &middot; Community</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Follow</h4>
+          <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </div>
+        <div class="footer-col">
+          <h4>Find Us</h4>
+          <a href="https://maps.google.com/?q=12+Example+Street+Hyderabad+Telangana" target="_blank" rel="noopener noreferrer">Directions</a>
+          <a href="#reserve">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="#menu">Menu</a>
+          <a href="#story">Our Story</a>
+          <a href="/work/noir-and-bean">Case Study</a>
+          <a href="/">HNA Studio</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 NOIR &amp; BEAN &mdash; Concept Project, HNA Studio</span>
+      <span class="studio-credit">Concept website designed and developed by <strong>HNA Studio</strong>.</span>
+    </div>
+  </div>
+</footer>
+
+<span class="concept-badge">Concept Project &mdash; HNA Studio</span>
+
+<script>
+(function(){
+  "use strict";
+
+  /* Sticky nav */
+  var nav = document.getElementById('siteNav');
+  var onScroll = function(){
+    if (window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* Mobile menu */
+  var hamburger = document.getElementById('hamburgerBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  function closeMenu(){
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded','false');
+    document.body.style.overflow = '';
+  }
+  function toggleMenu(){
+    var open = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  hamburger.addEventListener('click', toggleMenu);
+  mobileMenu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', closeMenu);
+  });
+
+  /* Scroll reveal */
+  var revealEls = document.querySelectorAll('[data-reveal]');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  /* Menu filtering */
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var categories = document.querySelectorAll('.menu-category');
+  filterBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      filterBtns.forEach(function(b){ b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed','true');
+      var f = btn.getAttribute('data-filter');
+      categories.forEach(function(cat){
+        var show = (f === 'all' || cat.getAttribute('data-category') === f);
+        cat.style.display = show ? '' : 'none';
+      });
+    });
+  });
+
+  /* Reservation form */
+  var form = document.getElementById('reserveForm');
+  var success = document.getElementById('reserveSuccess');
+  var successName = document.getElementById('successName');
+  var successDetail = document.getElementById('successDetail');
+  var againBtn = document.getElementById('reserveAgainBtn');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!form.checkValidity()){
+      form.reportValidity();
+      return;
+    }
+    var name = document.getElementById('r-name').value.trim() || 'friend';
+    var date = document.getElementById('r-date').value;
+    var time = document.getElementById('r-time').value;
+    var guests = document.getElementById('r-guests').value;
+
+    var dateLabel = date;
+    try {
+      var d = new Date(date + 'T00:00:00');
+      dateLabel = d.toLocaleDateString(undefined, { weekday:'long', month:'long', day:'numeric' });
+    } catch(err) {}
+
+    successName.textContent = name;
+    successDetail.textContent = guests + ' guest' + (Number(guests) === 1 ? '' : 's') + ' on ' + dateLabel + ' at ' + time;
+
+    form.style.display = 'none';
+    success.classList.add('show');
+    success.setAttribute('tabindex','-1');
+    success.focus();
+  });
+
+  againBtn.addEventListener('click', function(){
+    success.classList.remove('show');
+    form.style.display = 'grid';
+    form.reset();
+  });
+
+})();
+</script>
+
+</body>
+</html>
