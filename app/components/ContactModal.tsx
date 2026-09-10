@@ -207,9 +207,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                   onChange={(e) => setContact(e.target.value)}
                   className={`modal-input${contactError ? " input-error" : ""}`}
                 />
-                {contactError && (
-                  <p className="field-error">{contactError}</p>
-                )}
+                {contactError && <p className="field-error">{contactError}</p>}
               </div>
 
               <div className="form-group">
@@ -291,15 +289,23 @@ export default function ContactModal({ isOpen, onClose }: Props) {
             </a>
 
             <a
+              href="https://x.com/HNA_Studio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="direct-action-btn"
+            >
+              <span className="btn-icon">𝕏</span>
+              <span className="btn-text">Follow on X ↗</span>
+            </a>
+
+            <a
               href="https://www.instagram.com/hello.hnastudio/"
               target="_blank"
               rel="noopener noreferrer"
-              className="direct-action-btn direct-action-full"
+              className="direct-action-btn"
             >
               <span className="btn-icon">📸</span>
-              <span className="btn-text">
-                Follow on Instagram @hello.hnastudio ↗
-              </span>
+              <span className="btn-text">Instagram ↗</span>
             </a>
           </div>
         </div>

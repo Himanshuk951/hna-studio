@@ -27,6 +27,15 @@ export default function MainLayout({
           <span className="f-mono">HNA STUDIO — 2026</span>
           <div className="f-links">
             <a
+              href="https://x.com/HNA_Studio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="f-mono f-link"
+            >
+              X ↗
+            </a>
+            <span className="f-mono f-sep">·</span>
+            <a
               href="https://www.instagram.com/hello.hnastudio/"
               target="_blank"
               rel="noopener noreferrer"
