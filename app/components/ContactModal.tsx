@@ -61,36 +61,39 @@ export default function ContactModal({ isOpen, onClose }: Props) {
     }
   };
 
+  const isValidContact = (value: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[+\d][\d\s\-().]{6,}$/;
+    return emailRegex.test(value) || phoneRegex.test(value);
+  };
+
+  const contactError =
+    contact && !isValidContact(contact)
+      ? "Please enter a valid email or phone number."
+      : "";
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    if (!name || !contact) return;
+    if (!name || !contact || !isValidContact(contact)) return;
 
     setSubmitting(true);
     setStatus("idle");
 
     try {
-      const formData = new FormData();
-
-      formData.append(
-        "access_key",
-        process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "",
-      );
-
-      formData.append("name", name);
-      formData.append("email", contact);
-      formData.append("service", selectedService || "");
-      formData.append("message", message || "");
-      formData.append("from_name", "HNA Studio Website");
-      formData.append(
-        "subject",
-        `New Project Inquiry — ${name} (${selectedService || "General"})`,
-      );
-      formData.append("replyto", contact);
-
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "83fd0ade-db90-446c-85fc-fd2a77e64bcb",
+          from_name: "HNA Studio Website",
+          subject: `New Project Inquiry — ${name} (${selectedService})`,
+          name,
+          email: contact,
+          service: selectedService,
+          message: message || "(no message provided)",
+          replyto: contact,
+        }),
       });
 
       const data = await res.json();
@@ -202,8 +205,11 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                   placeholder="name@example.com or +91 98765 43210"
                   value={contact}
                   onChange={(e) => setContact(e.target.value)}
-                  className="modal-input"
+                  className={`modal-input${contactError ? " input-error" : ""}`}
                 />
+                {contactError && (
+                  <p className="field-error">{contactError}</p>
+                )}
               </div>
 
               <div className="form-group">
