@@ -25,9 +25,40 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "HNA Studio",
+  metadataBase: new URL("https://hnastudio.in"),
+  title: {
+    default: "HNA Studio — Websites, Content & Digital Systems",
+    template: "%s | HNA Studio",
+  },
   description:
     "Websites, content and smart digital systems for small businesses that want to look professional — and convert.",
+  keywords: [
+    "HNA Studio",
+    "web design studio",
+    "website development",
+    "brand systems",
+    "small business websites",
+    "digital agency",
+  ],
+  alternates: {
+    canonical: "https://hnastudio.in",
+  },
+  openGraph: {
+    title: "HNA Studio — Websites, Content & Digital Systems",
+    description:
+      "Websites, content and smart digital systems for small businesses that want to look professional — and convert.",
+    url: "https://hnastudio.in",
+    siteName: "HNA Studio",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "HNA Studio",
+    description:
+      "Websites, content and smart digital systems for small businesses.",
+    creator: "@HNA_Studio",
+  },
   icons: {
     icon: "/icon.png",
     apple: "/icon.png",
