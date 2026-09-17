@@ -8,15 +8,26 @@ type Props = {
 };
 
 const SERVICES = [
-  "Websites",
+  "Websites / Apps",
   "Content / Video",
   "Automation",
   "Brand Systems",
   "Full Package",
 ];
 
+const BUDGETS = [
+  "₹5k – ₹10k",
+  "₹10k – ₹25k",
+  "₹25k – ₹50k",
+  "₹50k+",
+  "Flexible",
+];
+
 export default function ContactModal({ isOpen, onClose }: Props) {
-  const [selectedService, setSelectedService] = useState("Websites");
+  const [selectedServices, setSelectedServices] = useState<string[]>([
+    "Websites / Apps",
+  ]);
+  const [selectedBudget, setSelectedBudget] = useState("₹5k – ₹10k");
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [message, setMessage] = useState("");
@@ -25,6 +36,23 @@ export default function ContactModal({ isOpen, onClose }: Props) {
   const [copied, setCopied] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const firstInputRef = useRef<HTMLInputElement>(null);
+
+  const toggleService = (srv: string) => {
+    setSelectedServices((prev) => {
+      if (srv === "Full Package") {
+        return ["Full Package"];
+      }
+
+      const withoutFull = prev.filter((s) => s !== "Full Package");
+
+      if (withoutFull.includes(srv)) {
+        if (withoutFull.length === 1) return withoutFull; // keep at least one selected
+        return withoutFull.filter((s) => s !== srv);
+      } else {
+        return [...withoutFull, srv];
+      }
+    });
+  };
 
   // Close on Escape & Lock body scroll
   useEffect(() => {
@@ -81,17 +109,20 @@ export default function ContactModal({ isOpen, onClose }: Props) {
     setStatus("idle");
 
     try {
+      const servicesLabel = selectedServices.join(", ");
+
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           access_key: "83fd0ade-db90-446c-85fc-fd2a77e64bcb",
           from_name: "HNA Studio Website",
-          subject: `New Project Inquiry — ${name} (${selectedService})`,
+          subject: `New Project Inquiry — ${name} (${servicesLabel} · ${selectedBudget})`,
           name,
           email: contact,
-          service: selectedService,
-          message: message || "(no message provided)",
+          service: servicesLabel,
+          budget: selectedBudget,
+          message: `Services: ${servicesLabel}\nEstimated Budget: ${selectedBudget}\n\n${message || "(no message provided)"}`,
           replyto: contact,
         }),
       });
@@ -103,6 +134,8 @@ export default function ContactModal({ isOpen, onClose }: Props) {
         setName("");
         setContact("");
         setMessage("");
+        setSelectedServices(["Websites / Apps"]);
+        setSelectedBudget("₹5k – ₹10k");
       } else {
         console.error("Web3Forms error:", data);
         setStatus("error");
@@ -161,8 +194,9 @@ export default function ContactModal({ isOpen, onClose }: Props) {
               <div className="success-icon">✓</div>
               <h4>Inquiry Received!</h4>
               <p>
-                We&apos;ve received your <strong>{selectedService}</strong>{" "}
-                inquiry and will reply within 24 hours to{" "}
+                We&apos;ve received your{" "}
+                <strong>{selectedServices.join(", ")}</strong> inquiry (
+                {selectedBudget}) and will reply within 24 hours to{" "}
                 <strong>{contact}</strong>. Check your inbox!
               </p>
               <button
@@ -173,6 +207,8 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                   setName("");
                   setContact("");
                   setMessage("");
+                  setSelectedServices(["Websites / Apps"]);
+                  setSelectedBudget("₹5k – ₹10k");
                 }}
               >
                 Send another message
@@ -211,18 +247,45 @@ export default function ContactModal({ isOpen, onClose }: Props) {
               </div>
 
               <div className="form-group">
-                <label>What service are you interested in?</label>
+                <label>
+                  What services are you interested in?{" "}
+                  <span
+                    style={{ opacity: 0.6, fontSize: "11px", fontWeight: 400 }}
+                  >
+                    (Select one or more)
+                  </span>
+                </label>
                 <div className="service-pills">
-                  {SERVICES.map((srv) => (
+                  {SERVICES.map((srv) => {
+                    const isSelected = selectedServices.includes(srv);
+                    return (
+                      <button
+                        type="button"
+                        key={srv}
+                        className={`service-pill ${isSelected ? "active" : ""}`}
+                        onClick={() => toggleService(srv)}
+                      >
+                        {isSelected ? "✓ " : ""}
+                        {srv}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label>Estimated Project Budget</label>
+                <div className="budget-pills">
+                  {BUDGETS.map((b) => (
                     <button
                       type="button"
-                      key={srv}
-                      className={`service-pill ${
-                        selectedService === srv ? "active" : ""
+                      key={b}
+                      className={`budget-pill ${
+                        selectedBudget === b ? "active" : ""
                       }`}
-                      onClick={() => setSelectedService(srv)}
+                      onClick={() => setSelectedBudget(b)}
                     >
-                      {srv}
+                      {b}
                     </button>
                   ))}
                 </div>

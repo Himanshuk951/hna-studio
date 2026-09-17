@@ -724,14 +724,16 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
   color: #e53e3e;
 }
 
-.service-pills {
+.service-pills,
+.budget-pills {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 4px;
 }
 
-.service-pill {
+.service-pill,
+.budget-pill {
   font-family: var(--mono);
   font-size: 11.5px;
   letter-spacing: 0.03em;
@@ -743,11 +745,13 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
   transition: background 0.15s, color 0.15s, transform 0.15s;
 }
 
-.service-pill:hover {
+.service-pill:hover,
+.budget-pill:hover {
   background: #ded6c9;
 }
 
-.service-pill.active {
+.service-pill.active,
+.budget-pill.active {
   background: var(--ink);
   color: var(--paper);
   font-weight: 700;

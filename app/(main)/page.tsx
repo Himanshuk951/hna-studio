@@ -8,8 +8,8 @@ const SERVICES = [
   {
     num: "01",
     key: "web",
-    title: "Websites",
-    desc: "Fast, modern websites that make a strong first impression and drive enquiries.",
+    title: "Websites / Apps",
+    desc: "Fast, modern websites and web apps that make a strong first impression and drive enquiries.",
   },
   {
     num: "02",
