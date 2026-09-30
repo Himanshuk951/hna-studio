@@ -46,7 +46,7 @@ export default function Home() {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
     reveals.forEach((el) => io.observe(el));
     return () => io.disconnect();
@@ -57,16 +57,20 @@ export default function Home() {
       <div className="wrap">
         <div className="hero">
           <div className="reveal in">
-            <div className="eyebrow">HNA Studio — Web / Content / Automation / Brand</div>
+            <div className="eyebrow">
+              HNA Studio — Web / Content / Automation / Brand
+            </div>
             <h1 className="h-headline">
               Look impossible <span className="mark">to ignore.</span>
             </h1>
             <p className="lede">
-              Websites, content and smart digital systems for small businesses that want to
-              look professional — and convert.
+              Websites, content and smart digital systems for small businesses
+              that want to look professional and convert.
             </p>
             <div className="hero-cta">
-              <a href="#work" className="btn btn-solid">See demos</a>
+              <a href="#work" className="btn btn-solid">
+                See demos
+              </a>
               <button
                 type="button"
                 onClick={() => setIsContactOpen(true)}
@@ -120,9 +124,10 @@ export default function Home() {
             </h3>
             <div className="reveal d2">
               <p>
-                HNA Studio is a two-person creative and digital team built by Himanshu and
-                Aditya. We combine design, development, editing and 3D skills to create
-                practical digital experiences for businesses.
+                HNA Studio is a two-person creative and digital team built by
+                Himanshu and Aditya. We combine design, development, editing and
+                3D skills to create practical digital experiences for
+                businesses.
               </p>
               <div className="meta">
                 BASED IN INDIA — WORKING WITH AMBITIOUS LOCAL AND ONLINE BRANDS
