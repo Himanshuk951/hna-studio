@@ -45,7 +45,7 @@ export const projects: Project[] = [
     services: "Web Design · Development · UX",
     status: "Concept Project",
     description:
-      "A premium digital experience for a modern specialty café — designed around atmosphere, discovery, menu exploration and reservations.",
+      "A premium digital experience for a modern specialty café, designed around atmosphere, discovery, menu exploration and reservations.",
     liveUrl: "/demo/noir-and-bean",
     previewAnchors: ["", "#menu", "#reserve"],
     theme: {
@@ -82,7 +82,7 @@ export const projects: Project[] = [
     services: "Web Design · Development · UX",
     status: "Concept Project",
     description:
-      "A high-energy digital experience for a premium strength and conditioning studio — built around programs, membership plans, coaching profiles and lead capture.",
+      "A high-energy digital experience for a premium strength and conditioning studio, built around programs, membership plans, coaching profiles and lead capture.",
     liveUrl: "/demo/iron-district",
     previewAnchors: ["", "#membership", "#cta"],
     theme: {
@@ -100,7 +100,8 @@ export const projects: Project[] = [
     caseStudy: {
       industry: "Fitness / Gym",
       services: "Web Design / Development / UX / Digital Experience",
-      concept: "Create a bold, high-energy digital identity for a premium strength and conditioning gym.",
+      concept:
+        "Create a bold, high-energy digital identity for a premium strength and conditioning gym.",
       approach:
         "Focus on dramatic imagery, confident typography, clear program structure, membership comparison and a low-friction lead capture flow.",
       whatWeBuilt: [
